@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+     <!-- build:css css/main.css -->
+    <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <title id="myName">iMeet-</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">iMeet</a>
+        <a class="nav-link" data-toggle="modal" data-target="#myModal" href="">Contact</a>
+    </nav>
+
+	<div class="container-fluid">
+        <div class="row main-container">
+            <!-- Online user list column-->
+            <div class="col-3 col-online">
+                
+                <ul  class="nav justify-content-center">
+                    <li class="active" > <button id="onlineButton" href="#One" data-target="#One" data-toggle="tab" onclick="selectOnelineButton()"> Online </button>  </li>
+                    <li  ><button id="messageButton"  href="#Two" data-target="#Two" data-toggle="tab" onclick="selectMessageListButton()"> Messages </button> <li>  
+                </ul> 
+
+                <div class="tab-content clearfix">
+                 
+                    <div class="tab-pane fade in active" id="One">
+                        <div id="name"><ul></ul></div>
+                    </div>
+
+                    <div class="tab-pane fade  " id="Two">
+                        <div id="messagesList"> <ul></ul></div>
+                    </div>
+                </div> 
+
+<!--
+                <div class="online-text"><p>Online Users</p></div>
+                <div id="name"><ul></ul></div>
+-->
+            </div>
+            <!-- Text message chat column-->
+            <div class="col">
+                <div class="chat-window ">
+                    
+                    <div class="row chat-header"> 
+                        <div class="col">
+                            <span id="selectedUser" style="color:red;">iMeet</span>
+                        </div>
+                        <div class="col-4" style="text-align: center;" id="mediaButtonDiv">
+                            <a class="no-border" id="audioCall"><i class="fa fa-phone" aria-hidden="true" style="color: seagreen;"></i></a>
+                            <a class="no-border" id="videoCall"><i class="fa fa-video-camera" aria-hidden="true" style="color: red;"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="chat-container">
+                            <div class="chat-messages" id="myMessages"></div>
+                        </div>
+
+
+                        <div class="input-group row-buttom">
+                            <div id="typing">
+
+                            </div>
+                            <textarea id="chatMeessage" class="input-chat-message" placeholder="Type a new message"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Call/ Video Chat column -->
+            <div id="mediaColumn" class="col-5">
+                <div class="row chat-header"> 
+                    <div class="col" style="text-align: center;">
+                        <a onclick="leaveCall()" style="color: red; font-weight: bold;">Exit</a>                    
+                    </div>
+                </div>
+                <div class="row">
+                     
+                    <div class="col media-container">
+                                                
+                        <div class="block" id="medialCallDiv">
+                            <div class="circle">
+                                <p id="mediaCallDetails"></p>
+                            </div>
+
+                            <div id="receiveDiv">
+                                <button id="acceptCall">Accept</button>
+                                <button id="declineCall">Decline</button>
+                            </div>
+                            <div id="cancelDiv">
+                                <button id="cancelCall">Cancel</button>
+                            </div>  
+                        </div>
+                        <video class="remote" id="remoteVideo" autoplay playsinline></video>
+                        <video class="local" id="localVideo" muted autoplay playsinline></video>
+                        <audio id="remoteAudio" autoplay> </audio>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End of Colomns-->
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title" style="color: royalblue;">Anjan Jana</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Village: Paya, Paya Medinipur, Purba Medinipur, West Bengal</p>
+                    <p>
+                        <a href="mailto:link2anjan@gmail.com?subject=One%20More%20Light-iMeet">Mail Me</a>
+                    </p>
+                    <p>
+                        <a href="http://twitter.com/share?text= @link2anjan One More Light - iMeet&hashtags=OneMoreLight,AnjanJana,iMeet" target="_blank">
+                            Report Bug
+                        </a>
+                    </p> 
+                    <p>** Version 0.0.1: Designed for Desktop. Tested on Chrome Browser</p>
+
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/assets/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/assets/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!--
+    <script src="/assets/js/webRtc/adapter.js"></script>
+
+-->
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="/assets/js/webRtc/webRtc.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/assets/js/chat.js"></script>
+    <script src="/assets/js/chat-query.js"></script>
+
+</body>
+
+</html>

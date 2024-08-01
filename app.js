@@ -111,7 +111,12 @@ secureServer.on('listening', onListening);
 /**
  * ################# Socket IO implementation ########################
  */
-var io = require('socket.io')(secureServer);
+const io = require('socket.io')(secureServer, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

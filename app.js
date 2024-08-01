@@ -111,7 +111,7 @@ secureServer.on('listening', onListening);
 /**
  * ################# Socket IO implementation ########################
  */
-var io = require('socket.io')("https://imeet-y6v2.onrender.com");
+var io = require('socket.io')(secureServer);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

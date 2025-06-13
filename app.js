@@ -111,7 +111,7 @@ secureServer.on('listening', onListening);
 /**
  * ################# Socket IO implementation ########################
  */
-var io = require('socket.io')(secureServer);
+var io = require('socket.io')(server);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

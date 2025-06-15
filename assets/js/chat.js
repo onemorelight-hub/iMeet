@@ -306,6 +306,8 @@ function leaveCall(){
   disableLocalVideoDiv();
   disableRemoteVideoDiv();
   enableMediaButtonDiv();
+  socket.emit("exitMediaCall",{"id": selectedUserSocket, "callingUser": myUserName});
+
 }
 
 function acceptCallMethod(){
@@ -397,6 +399,11 @@ socket.on('message', msg=> {
 socket.on("declineMediaCall", msg=>{
   document.getElementById("mediaCallDetails").innerText="Call declined ";
 });
+
+socket.on("exitMediaCall", msg=>{
+  leaveCall();
+});
+
 
 socket.on("MediaUserBusy",msg=>{
   document.getElementById("mediaCallDetails").innerText= msg.userName +" busy on another call";

@@ -297,8 +297,10 @@ function exitCall(){
   }
   mediaCallStatus = false;
   mediaColumn.hidden = true;
-  localStream.getTracks().forEach(function(track) { track.stop(); });
-  pc.close();
+  if(localStream != null){
+    localStream.getTracks().forEach(function(track) { track.stop(); });
+    pc.close();
+  }
   pc = null;
   localStream = null;
   remoteStream = null;

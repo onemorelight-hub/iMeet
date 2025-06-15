@@ -290,7 +290,8 @@ function videoCallMethod(){
     socket.emit("callaingMedia",{"id": selectedUserSocket, "callingUser": myUserName, "mode": "Video"});
   }
 }
-function leaveCall(){
+
+function exitCall(){
   if(remoteStream != null){
     sendMessage('bye');
   }
@@ -306,8 +307,11 @@ function leaveCall(){
   disableLocalVideoDiv();
   disableRemoteVideoDiv();
   enableMediaButtonDiv();
-  socket.emit("exitMediaCall",{"id": selectedUserSocket, "callingUser": myUserName});
+}   
 
+function leaveCall(){
+  socket.emit("exitMediaCall",{"id": selectedUserSocket, "callingUser": myUserName});
+  exitCall()
 }
 
 function acceptCallMethod(){
@@ -401,7 +405,7 @@ socket.on("declineMediaCall", msg=>{
 });
 
 socket.on("exitMediaCall", msg=>{
-  leaveCall();
+  exitCall();
 });
 
 

@@ -173,6 +173,11 @@ io.on('connection', (socket) => {
       socket.to(msg.id).emit('message', {"id": socket.id, "description":msg.description});
     });
 
+  socket.on('exitMedialCall', msg=> {
+      console.log("On exitMedialCall-> id: "+ msg.id +" userName: "+msg.userName);
+      socket.to(msg.id).emit('exitMedialCall', {"id": socket.id, "description":msg.userName});
+    });
+
     socket.on("disconnect", msg=>{
       let userName = users.getUserNameFromSocket(socket.id);
       users.removeSocket(socket.id);
